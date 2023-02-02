@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2022/10/03/xOmwMAjdS2gpTcR.jpg">
 <meta property="article:published_time" content="2022-12-28T11:38:00.000Z">
-<meta property="article:modified_time" content="2023-02-02T09:41:19.198Z">
+<meta property="article:modified_time" content="2023-02-02T09:53:49.094Z">
 <meta property="article:author" content="也无风雨">
 <meta property="article:tag" content="CS">
 <meta name="twitter:card" content="summary">
@@ -53,7 +53,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2023-02-02 17:41:19'
+  postUpdate: '2023-02-02 17:53:49'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -142,8 +142,7 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2022/10/01/I2nSFvzp48lecKO.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2022/10/03/xOmwMAjdS2gpTcR.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Tech, Poem &amp; More</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">向量化加速:尝试基于SIMD加速最大子矩阵和问题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-28T11:38:00.000Z" title="发表于 2022-12-28 19:38:00">2022-12-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-02T09:41:19.198Z" title="更新于 2023-02-02 17:41:19">2023-02-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CS/">CS</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">6.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>24分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="向量化加速:尝试基于SIMD加速最大子矩阵和问题"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><img src="C:\Users\Pondsi\Desktop\图片2.svg" alt="图片2"></p>
-<h1 id="最大子矩阵和问题的向量化加速探究与扩展"><a href="#最大子矩阵和问题的向量化加速探究与扩展" class="headerlink" title="最大子矩阵和问题的向量化加速探究与扩展"></a><center><strong>最大子矩阵和问题的向量化加速探究与扩展</strong></h1><p>课程名称：汇编与接口</p>
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2022/10/01/I2nSFvzp48lecKO.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s2.loli.net/2022/10/03/xOmwMAjdS2gpTcR.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Tech, Poem &amp; More</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">向量化加速:尝试基于SIMD加速最大子矩阵和问题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-28T11:38:00.000Z" title="发表于 2022-12-28 19:38:00">2022-12-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-02T09:53:49.094Z" title="更新于 2023-02-02 17:53:49">2023-02-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CS/">CS</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">6.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>24分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="向量化加速:尝试基于SIMD加速最大子矩阵和问题"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="最大子矩阵和问题的向量化加速探究与扩展"><a href="#最大子矩阵和问题的向量化加速探究与扩展" class="headerlink" title="最大子矩阵和问题的向量化加速探究与扩展"></a><center><strong>最大子矩阵和问题的向量化加速探究与扩展</strong></h1><p>课程名称：汇编与接口</p>
 <p>学生姓名：云中君</p>
 <p>学号：********</p>
 <p>邮件地址：********@zju.edu.cn</p>
@@ -168,7 +167,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= m; i++ )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt;= n; j++ )</span><br><span class="line">    &#123;</span><br><span class="line">        T = T + M[i][j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>​		分析其依赖关系，可以看到在循环内，大致有如下图的几种数据依赖：</p>
-<img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221220233618978.png" alt="image-20221220233618978" style="zoom:50%;" />
+<img src="image-20221220233618978.png" alt="image-20221220233618978" style="zoom:50%;" />
 
 <p>​		因为T(即暂时存当前操作矩阵和的遍量<code>ThisSum</code>)这一跨循环的共有变量存在，在执行过程中数据之间存在了很大的依赖性，其中也存在真实依赖(<code>RAW</code>)，使得向量化难以继续。</p>
 <p>​		但是由于T的最终目的是运算当前子矩阵的元素和，具体执行的手段其实可以变化，我们只需要在保证结果正确的前提下，尽可能实现向量化即可。我们可以通过重命名的技术，消除处理RAW之外的反相关和输出相关；对于真相关，我们完全可以分别计算上图中S1、S2语句中的T，只需要在最后将这两个值相加即可，即使未能消除的循环间的真相关，也不会影响程序执行。</p>
@@ -201,7 +200,7 @@
 
 <p>​		第一种形式是最自然地想法，但是注意到我们引入了乘法，而乘法运算，我们在体系结构、计算机组成课程中都了解过，需要较多的时钟周期来完成，显然为了这样简单的操作，是得不偿失的。所以我们选择第二种，即使用<code>bitwise</code>的与&#x2F;或操作来完成。</p>
 <p>​		但是在依赖关系上，循环内层中，<code>ThisSum</code>、b变量(暂时存储比较结果)存在真依赖，而b的真依赖在循环之间是无关的，每个<code>ThisSum</code>和<code>MaxSum</code>对应一个唯一的b值，不会影响具体的操作。但是对于<code>ThisSum</code>而言，有条件比较存在，这一跨循环的依赖是难以消除的。因为对于每一次<code>MaxSum</code>的更新，都唯一决定于这一层循环中<code>ThisSum</code>的值，也就是<code>ThisSum</code>的值具有<strong>“记录”</strong>意义，每次修改得到的都对应最终某个子矩阵的和。所以我们不能像之前的加速方法那样对<code>ThisSum</code>进行分道，来破坏循环间的依赖。</p>
-<img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221221201513712.png" alt="image-20221221201513712" style="zoom: 50%;" />
+<img src="image-20221221201513712.png" alt="image-20221221201513712" style="zoom: 50%;" />
 
 <p>​		但是从对O(N^6)算法的加速的经验上看，我们是不是也可以人为地处理<code>MaxSum</code>这一值，来破坏这一依赖关系，也就是让每次<code>ThisSum</code>在循环间互不相关，不会存在累加的效果。这一处的修改让人摸不着头脑，试图通过-O3查看汇编指令，让编译器给一些提示，但是发现编译器在此处并不采用向量化，只是简单的循环操作，没有采用并行。对此我思考了很久，似乎必须对代码进行重构（类似于课上讲的调换顺序的方法）才可以解决这一优化的瓶颈。</p>
 <h4 id="3-4-向量化遇到的瓶颈及尝试"><a href="#3-4-向量化遇到的瓶颈及尝试" class="headerlink" title="3.4 向量化遇到的瓶颈及尝试"></a>3.4 向量化遇到的瓶颈及尝试</h4><p>​		对此我思考了两种方法，在不改变原有代码含义的基础上，通过算法的表述的改进，来试图实现优化。</p>
@@ -214,10 +213,10 @@
 
 <h5 id="3-4-2-调换循环顺序来解决依赖"><a href="#3-4-2-调换循环顺序来解决依赖" class="headerlink" title="3.4.2 调换循环顺序来解决依赖"></a>3.4.2 调换循环顺序来解决依赖</h5><p>​		虽然上面的算法修改结果并不理想，但是也给了我一些启示。既然上面的矩阵方法引入了矩阵乘法的操作来实现所有<code>ThisSum</code>的计算，则同样地，我们是否可以用其他的方法，来列举得到所有的可能值，从而也就可以相应地获得最终的最大值？这也就是第二种想法的由来。</p>
 <p>​		注意到，每一次<code>ThisSum</code>都是从单独的一个T[k]元素开始，逐步的累加，那么其实以不同的T[k]开头的值对应的这一组<code>ThisSum</code>是无关的，也就是说外层循环之间是无关的，相关性来自内层循环。利用这一点，我们可以尝试下面的这一思路，简单起见，我们假设<strong>每个向量包含两个元素</strong>。</p>
-<img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221221223832919.png" alt="image-20221221223832919" style="zoom: 50%;" />
+<img src="image-20221221223832919.png" alt="image-20221221223832919" style="zoom: 50%;" />
 
 <p>​		按照上图的方法，我们把8个元素分为4组，每一组用一个向量表示，再设置一个记录<code>max</code>值的向量，包含两个元素。第一次我们将各个值load到这些向量中，与<code>max</code>中的向量比较，只要是大于对应<code>lane</code>的值，则替换，否则保持不变。此后，每一次我们对各个元素左移一位，如图操作，再与前一次得到的向量进行加减。这样每一个向量可以表示两个T[k]对应的<code>ThisSum</code>最终值，每次加法操作表示一次叠加，也就是上图中0可以表示T[0]，每加一次，就从<code>T[0]+T[1]+...+T[i]</code>变为<code>T[0]+T[1]+...+T[i]+T[i+1]</code>，1则表示T[1]开始的。这样我们就可以并行地操作一个向量中包含多个系列的<code>ThisSum</code>值，从而实现向量化并行。</p>
-<img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221221225007431.png" alt="image-20221221225007431" style="zoom: 50%;" />
+<img src="image-20221221225007431.png" alt="image-20221221225007431" style="zoom: 50%;" />
 
 <p>具体的算法实现如下，实际一个向量包含8个元素：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(l=<span class="number">0</span>; l&lt;N; l++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span>(k=<span class="number">0</span>; k&lt;N-ROUNDDOWN(l,<span class="number">8</span>); k+=<span class="number">8</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        value2 = _mm256_loadu_ps(T+k+l);</span><br><span class="line">        value[k/<span class="number">8</span>] = _mm256_add_ps(value2, value[k/<span class="number">8</span>]);</span><br><span class="line">        <span class="comment">//value1 = max[i] &gt; value[i]? 0xFFFF:0</span></span><br><span class="line">        value1 = _mm256_cmp_ps(max, value[k/<span class="number">8</span>], _CMP_GT_OS);</span><br><span class="line">        <span class="comment">//max = max &amp; value</span></span><br><span class="line">        max = _mm256_and_ps(value1, max);</span><br><span class="line">        <span class="comment">//value1 = not(value1) &amp; value</span></span><br><span class="line">        value1 = _mm256_andnot_ps(value1, value[k/<span class="number">8</span>]);</span><br><span class="line">        max = _mm256_or_ps(max, value1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -257,10 +256,10 @@
 </tr>
 <tr>
 <td align="left">Picture</td>
-<td align="center"><img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221221234824954.png" alt="image-20221221234824954" height=120 /></td>
-<td align="center"><img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221221234959581.png" alt="image-20221221234959581" height=120 /></td>
-<td align="center"><img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221221235149017.png" alt="image-20221221235149017" height=120 /></td>
-<td align="center"><img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221221235321855.png" alt="image-20221221235321855" height=120 /></td>
+<td align="center"><img src="image-20221221234824954.png" alt="image-20221221234824954" height=120 /></td>
+<td align="center"><img src="image-20221221234959581.png" alt="image-20221221234959581" height=120 /></td>
+<td align="center"><img src="image-20221221235149017.png" alt="image-20221221235149017" height=120 /></td>
+<td align="center"><img src="image-20221221235321855.png" alt="image-20221221235321855" height=120 /></td>
 </tr>
 </tbody></table>
 <p>使用<code>-O3</code>进一步优化后：</p>
@@ -297,10 +296,10 @@
 </tr>
 <tr>
 <td align="left">Picture</td>
-<td align="center"><img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221221234115220.png" alt="image-20221221234115220" height=120 /></td>
-<td align="center"><img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221221234011974.png" alt="image-20221221234011974" height=120 /></td>
-<td align="center"><img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221221234338654.png" alt="image-20221221234338654" height=120 /></td>
-<td align="center"><img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221221234526496.png" alt="image-20221221234526496" height=120 /></td>
+<td align="center"><img src="image-20221221234115220.png" alt="image-20221221234115220" height=120 /></td>
+<td align="center"><img src="image-20221221234011974.png" alt="image-20221221234011974" height=120 /></td>
+<td align="center"><img src="image-20221221234338654.png" alt="image-20221221234338654" height=120 /></td>
+<td align="center"><img src="image-20221221234526496.png" alt="image-20221221234526496" height=120 /></td>
 </tr>
 </tbody></table>
 <p>​		整体的提速效果随着矩阵的大小而提高，一般能<strong>提高3-4倍</strong>左右，但是由于O(N^6)算法时间复杂度随N增长过快，对过大的矩阵还是会需要很长时间。</p>
@@ -338,10 +337,10 @@
 </tr>
 <tr>
 <td align="left">Picture</td>
-<td align="center"><img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221221235909215.png" alt="image-20221221235909215" height=120 /></td>
-<td align="center"><img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221222000035239.png" alt="image-20221222000035239" height=120 /></td>
-<td align="center"><img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221222000231723.png" alt="image-20221222000231723" height=120 /></td>
-<td align="center"><img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221222000840665.png" alt="image-20221222000840665" height=120 /></td>
+<td align="center"><img src="image-20221221235909215.png" alt="image-20221221235909215" height=120 /></td>
+<td align="center"><img src="image-20221222000035239.png" alt="image-20221222000035239" height=120 /></td>
+<td align="center"><img src="image-20221222000231723.png" alt="image-20221222000231723" height=120 /></td>
+<td align="center"><img src="image-20221222000840665.png" alt="image-20221222000840665" height=120 /></td>
 </tr>
 </tbody></table>
 <p>加<code>-O3</code>的情况：</p>
@@ -378,10 +377,10 @@
 </tr>
 <tr>
 <td align="left">Picture</td>
-<td align="center"><img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221222001021886.png" alt="image-20221222001021886" height=120 /></td>
-<td align="center"><img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221222001138189.png" alt="image-20221222001138189" height=120 /></td>
-<td align="center"><img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221222001257508.png" alt="image-20221222001257508" height=120 /></td>
-<td align="center"><img src="D:\CS\2022 fall-winter\OS\最大子矩阵和问题的向量化加速探究与扩展\image-20221222001531361.png" alt="image-20221222001531361" height=120 /></td>
+<td align="center"><img src="image-20221222001021886.png" alt="image-20221222001021886" height=120 /></td>
+<td align="center"><img src="image-20221222001138189.png" alt="image-20221222001138189" height=120 /></td>
+<td align="center"><img src="image-20221222001257508.png" alt="image-20221222001257508" height=120 /></td>
+<td align="center"><img src="image-20221222001531361.png" alt="image-20221222001531361" height=120 /></td>
 </tr>
 </tbody></table>
 <p>​		可以看到，在不加<code>-O3</code>的情况下，提速其实并不理想，但是通过我的加速方法，再通过编译器的加速，发现效果很显著，甚至在500*500时达到了<strong>6倍多</strong>，说明我的加速方法为编译器提供了更好的加速条件。</p>
